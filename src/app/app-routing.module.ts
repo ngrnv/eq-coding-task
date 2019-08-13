@@ -8,6 +8,10 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent
   },
+  {
+    path: 'shipments',
+    loadChildren: () => import('./modules/shipments/shipments.module').then(mod => mod.ShipmentsModule)
+  },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
 ];
 

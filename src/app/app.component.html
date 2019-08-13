@@ -4,38 +4,6 @@
       <h1>Post Hub</h1>
     </div>
   </div>
-  <div class="row p-5">
-    <div class="col-lg-5 ant-col-lg-offset-1 col-md-6 col-sm-12">
-      <nz-card class="w-100">
-        <h5>Search shipments</h5>
-        <div class="mt-4">
-          <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="Shipment ID"/>
-          </nz-input-group>
-          <ng-template #suffixButton>
-            <button nz-button nzType="primary" nzSize="large" nzSearch>Search</button>
-          </ng-template>
-        </div>
-        <div class="mt-4">
-          <a>See All Shipments</a>
-        </div>
-      </nz-card>
-    </div>
-    <div class="col-lg-5 ant-col-lg-offset-1 col-md-6 col-sm-12">
-      <nz-card class="w-100">
-        <h5>Search Office</h5>
-        <div class="mt-4">
-          <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="ZIP Code"/>
-          </nz-input-group>
-          <ng-template #suffixButton>
-            <button nz-button nzType="primary" nzSize="large" nzSearch>Search</button>
-          </ng-template>
-        </div>
-        <div class="mt-4">
-          <a>See All Offices</a>
-        </div>
-      </nz-card>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
+
 </div>

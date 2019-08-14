@@ -3,9 +3,10 @@ const router = express.Router();
 const db = require('../db-mock/db');
 const uuidv4 = require('uuid/v4');
 
+const RESPONSE_TIMEOUT = 2000;
 
 router.get('/list', function(req, res) {
-    res.send(db.shipments);
+    setTimeout(() => res.send(db.shipments), RESPONSE_TIMEOUT);
 });
 
 router.post('/add', function(req, res) {

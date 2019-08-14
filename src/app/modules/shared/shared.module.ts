@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NzCardModule, NzInputModule, NzButtonModule } from 'ng-zorro-antd';
+import { NzButtonModule, NzCardModule, NzIconModule, NzInputModule, NzSpinModule } from 'ng-zorro-antd';
+import { LoaderComponent } from './components/loader/loader.component';
 
 const MODULES = [
   CommonModule,
@@ -9,16 +10,23 @@ const MODULES = [
   ReactiveFormsModule,
   NzButtonModule,
   NzCardModule,
-  NzInputModule
+  NzInputModule,
+  NzSpinModule,
+  NzIconModule
+];
+
+const DECLARATIONS = [
+  LoaderComponent
 ];
 
 @NgModule({
-  declarations: [],
   imports: [
     ...MODULES
   ],
+  declarations: [...DECLARATIONS],
   exports: [
-    ...MODULES
+    ...MODULES,
+    ...DECLARATIONS
   ]
 })
 export class SharedModule {

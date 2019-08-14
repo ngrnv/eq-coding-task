@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GlobalLoaderService } from './core/services/global-loader.service';
 
 @Component({
   selector: 'eq-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'eq-coding-task';
+
+  constructor(public loader: GlobalLoaderService) {
+  }
+
 }

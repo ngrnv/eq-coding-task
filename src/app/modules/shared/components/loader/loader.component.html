@@ -1,5 +1,5 @@
 <ng-container *ngIf="show">
-  <div class="eq-spin-overlay"></div>
+  <div class="eq-spin-overlay" *ngIf="overlay"></div>
   <ng-template #indicatorTemplate><i nz-icon nzType="loading" class="eq-spin"></i></ng-template>
-  <nz-spin nzSimple [nzIndicator]="indicatorTemplate"></nz-spin>
+  <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [ngClass]="{'nz-spin--overlay' : overlay}"></nz-spin>
 </ng-container>

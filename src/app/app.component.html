@@ -6,4 +6,4 @@
   </div>
   <router-outlet></router-outlet>
 </div>
-<!--<eq-loader [show]="true"></eq-loader>-->
+<eq-loader [show]="loader.loading$ | async" [overlay]="true"></eq-loader>

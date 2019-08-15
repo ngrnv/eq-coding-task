@@ -23,18 +23,18 @@ const MODULES = [
 
 const DECLARATIONS = [
   LoaderComponent,
-  PageNotFoundComponent
+  PageNotFoundComponent,
+  BackToHomeComponent
 ];
 
 @NgModule({
   imports: [
     ...MODULES
   ],
-  declarations: [...DECLARATIONS, BackToHomeComponent],
+  declarations: [...DECLARATIONS],
   exports: [
     ...MODULES,
-    ...DECLARATIONS,
-    BackToHomeComponent
+    ...DECLARATIONS
   ]
 })
 export class SharedModule {

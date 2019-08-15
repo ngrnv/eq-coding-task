@@ -17,17 +17,17 @@
         nzTableFilter
       ></i>
     </th>
-    <th nzShowSort nzShowFilter
+    <th nzShowFilter
         [nzFilters]="filterValueLists['type']"
         (nzFilterChange)="filterGrid('type', $event)">
       Type
     </th>
-    <th nzShowSort nzShowFilter
+    <th nzShowFilter
         [nzFilters]="filterValueLists['weight']"
         (nzFilterChange)="filterGrid('weight', $event)">
       Weight
     </th>
-    <th nzShowSort nzShowFilter
+    <th nzShowFilter
         [nzFilters]="filterValueLists['office']"
         (nzFilterChange)="filterGrid('office', $event)">
       Office

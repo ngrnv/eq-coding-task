@@ -5,6 +5,7 @@ import { NzButtonModule, NzCardModule, NzDropDownModule, NzIconModule, NzInputMo
 import { LoaderComponent } from './components/loader/loader.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RouterModule } from '@angular/router';
+import { BackToHomeComponent } from './components/back-to-home/back-to-home.component';
 
 const MODULES = [
   CommonModule,
@@ -29,10 +30,11 @@ const DECLARATIONS = [
   imports: [
     ...MODULES
   ],
-  declarations: [...DECLARATIONS],
+  declarations: [...DECLARATIONS, BackToHomeComponent],
   exports: [
     ...MODULES,
-    ...DECLARATIONS
+    ...DECLARATIONS,
+    BackToHomeComponent
   ]
 })
 export class SharedModule {

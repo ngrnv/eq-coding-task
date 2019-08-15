@@ -17,13 +17,20 @@
         nzTableFilter
       ></i>
     </th>
-    <th nzShowSort nzShowFilter>
+    <th nzShowSort nzShowFilter
+        [nzFilters]="filterValueLists['type']"
+        (nzFilterChange)="filterGrid('type', $event)">
       Type
     </th>
     <th nzShowSort nzShowFilter
         [nzFilters]="filterValueLists['weight']"
         (nzFilterChange)="filterGrid('weight', $event)">
       Weight
+    </th>
+    <th nzShowSort nzShowFilter
+        [nzFilters]="filterValueLists['office']"
+        (nzFilterChange)="filterGrid('office', $event)">
+      Office
     </th>
   </tr>
   </thead>
@@ -32,9 +39,12 @@
     <td><a [routerLink]="['/shipments', shipment.id]">{{ shipment.id }}</a></td>
     <td class="text-capitalize">{{shipment?.type?.name}}</td>
     <td>{{shipment?.weight?.desc}}</td>
+    <td>{{shipment?.office?.PLZ + ', ' + shipment?.office?.name}}</td>
   </tr>
   </tbody>
 </nz-table>
+
+
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <div class="search-box">
     <input type="text" nz-input placeholder="Search Shipment" [(ngModel)]="searchValue"/>

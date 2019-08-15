@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { GenericGrid } from '../../../../core/grid/generic-grid';
 import { Shipment } from 'src/app/models/models';
-import { prop } from 'ramda';
+import { prop, pipe, props } from 'ramda';
 
 @Component({
   selector: 'eq-shipments-list',
@@ -15,7 +15,11 @@ export class ShipmentsListComponent extends GenericGrid<Shipment> implements OnI
     super(
       Shipment,
       {
-        enumerableColumns: [{ name: 'weight', valueFn: prop('id'), textFn: prop('desc') }]
+        enumerableColumns: [
+          { name: 'weight', valueFn: prop('id'), textFn: prop('desc') },
+          { name: 'type', valueFn: prop('id'), textFn: pipe(prop('name'), (name: string) => name.charAt(0).toUpperCase() + name.slice(1)) },
+          { name: 'office', valueFn: prop('id'), textFn:  pipe(props(['PLZ', 'name']), ([plz, name]) => `${plz}, ${name}`)}
+        ]
       }
     );
   }

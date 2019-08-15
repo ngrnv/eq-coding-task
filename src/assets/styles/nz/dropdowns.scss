@@ -1,0 +1,11 @@
+.ant-table-filter-dropdown {
+  .ant-dropdown-menu.ant-dropdown-menu-root {
+    max-height: 240px;
+    overflow-y: auto;
+
+    .ant-dropdown-menu-item {
+      padding-right: 30px;
+      overflow: initial;
+    }
+  }
+}

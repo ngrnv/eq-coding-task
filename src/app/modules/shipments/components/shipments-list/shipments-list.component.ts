@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { GenericGrid } from '../../../../core/grid/generic-grid';
 import { Shipment } from 'src/app/models/models';
-import { prop, pipe, props } from 'ramda';
+import { pipe, prop, props } from 'ramda';
 
 @Component({
   selector: 'eq-shipments-list',

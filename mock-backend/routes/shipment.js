@@ -56,7 +56,7 @@ router.post('/delete', function (req, res) {
   const id = req.body.id;
   const shipment = getShipment(id);
   const deletedId = deleteShipment(shipment);
-  res.send(deletedId + ' deleted successfully');
+  res.send({ id: deletedId });
 });
 
 router.post('/get', function (req, res) {

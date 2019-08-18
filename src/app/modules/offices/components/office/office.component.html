@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-12">
+    <div class="d-flex">
+      <eq-go-back class="pr-4" [label]="'All Offices'"></eq-go-back>
+      <eq-go-back [path]="['/home']" [icon]="'home'" [label]="'Home'"></eq-go-back>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-5 col-md-6 col-sm-12 mb-3">
+    <nz-card class="w-100 p-3">
+      <h5>Office</h5>
+      <ng-container *ngIf="office$ | async; let office">
+
+        <eq-loader [show]="processing" [overlay]="true"></eq-loader>
+
+        <ng-container *ngIf="!editMode">
+          <div class="mt-4" >
+            <div class="pb-2"><strong>PLZ:</strong> {{office.PLZ}}</div>
+            <div class="pb-2"><strong>Name:</strong> {{office.name}}</div>
+          </div>
+          <div class="mt-4">
+            <button nz-button [nzType]="'primary'" (click)="onEdit()" class="mr-2">
+              <i nz-icon nzType="edit" class="align-middle pb-1"></i>Edit
+            </button>
+            <button nz-button [nzType]="'default'" (click)="onDelete(office.id)">
+              <i nz-icon nzType="delete" class="align-middle pb-1"></i>Delete
+            </button>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="editMode">
+          <eq-office-form [office]="office" [saving]="processing"
+                            (formResult)="onResult($event)"
+                            (cancel)="onCancel()"></eq-office-form>
+        </ng-container>
+
+      </ng-container>
+    </nz-card>
+  </div>
+</div>

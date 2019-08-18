@@ -1,0 +1,42 @@
+<nz-table #nzTable [nzData]="displayedData" [nzSize]="'middle'" [nzFooter]="'Rows: ' + displayedData.length">
+  <thead>
+  <tr>
+    <th nzCustomFilter [nzShowRowSelection]="true">
+      ZIP
+      <i
+        class="ant-table-filter-icon"
+        nz-icon
+        nz-dropdown
+        #dropdown="nzDropdown"
+        nzType="search"
+        [nzDropdownMenu]="menu"
+        [class.ant-table-filter-open]="dropdown.nzVisible"
+        nzTrigger="click"
+        nzPlacement="bottomRight"
+        [nzClickHide]="true"
+        nzTableFilter
+      ></i>
+    </th>
+    <th>
+      Name
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let office of nzTable.data">
+    <td><a [routerLink]="['/offices', office.id]">{{ office.PLZ }}</a></td>
+    <td>{{office?.name}}</td>
+  </tr>
+  </tbody>
+</nz-table>
+
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <div class="search-box">
+    <input type="text" nz-input placeholder="Search Office" [(ngModel)]="filter['PLZ']"/>
+    <button nz-button nzSize="small" nzType="primary" (click)="filterGrid()" class="search-button">
+      Search
+    </button>
+    <button nz-button nzSize="small" (click)="resetFilter()">Reset</button>
+  </div>
+</nz-dropdown-menu>

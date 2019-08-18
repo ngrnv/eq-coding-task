@@ -21,8 +21,7 @@ export class ShipmentComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private shipments: ShipmentsBackendService
-  ) {
+              private shipments: ShipmentsBackendService) {
     this.shipment$ = combineLatest(
       this.route.data.pipe(map(data => data.shipment)),
       this.reloadShipment$.pipe(

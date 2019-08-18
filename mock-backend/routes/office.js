@@ -17,7 +17,7 @@ router.post('/add', function (req, res) {
     name: request.name,
   };
   addToList(newOffice);
-  res.send('Office added successfully');
+  setTimeout(() => res.send({ id: newOffice.id }), RESPONSE_TIMEOUT);
 });
 
 router.post('/update', function (req, res) {
@@ -26,26 +26,35 @@ router.post('/update', function (req, res) {
   const office = getOffice(id);
   console.log(office);
   const updatedId = updateOffice(office, updatedOffice);
-  res.send(updatedId + ' updated successfully');
+  res.send({ id: updatedId });
 });
 
 router.post('/delete', function (req, res) {
   const id = req.body.id;
   const office = getOffice(id);
   const deletedId = deleteOffice(office);
-  res.send(deletedId + ' deleted successfully');
+  res.send({ id: deletedId });
 });
 
 router.post('/get', function (req, res) {
   const id = req.body.id;
-  const office = getOffice(id);
-  res.send(office);
+  new Promise((res, rej) => setTimeout(() => res(id), RESPONSE_TIMEOUT))
+    .then(id => {
+      return getOffice(id);
+    })
+    .then(office => res.send(office))
+    .catch(err => res.status(err.status).send({ error: err.message }))
 });
 
 router.post('/getByZip', function (req, res) {
   const zip = req.body.zip;
-  const office = getOfficeByZip(zip);
-  res.send(office);
+
+  new Promise((res, rej) => setTimeout(() => res(zip), RESPONSE_TIMEOUT))
+    .then(zip => {
+      return getOfficeByZip(zip);
+    })
+    .then(office => res.send(office))
+    .catch(err => res.status(err.status).send({ error: err.message }))
 });
 
 function updateOffice(office, updatedOffice) {

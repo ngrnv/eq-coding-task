@@ -44,9 +44,6 @@ router.post('/update', function (req, res) {
     weight,
     office,
   };
-
-
-  // const updatedShipment = req.body;
   const shipment = getShipment(id);
   const updatedId = updateStatus(shipment, updated);
   res.send({ id: updatedId });

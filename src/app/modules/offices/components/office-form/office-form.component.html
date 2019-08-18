@@ -1,0 +1,30 @@
+<form nz-form [formGroup]="form">
+
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please enter ZIP code">
+      <nz-input-group>
+        <nz-input-number class="w-100" formControlName="PLZ" placeholder="ZIP" [nzStep]="1"></nz-input-number>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please enter office name">
+      <nz-input-group>
+        <input type="text" nz-input formControlName="name" placeholder="Name" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item class="mb-0">
+    <nz-form-control>
+      <button type="button" nz-button [nzType]="'primary'" [disabled]="form.pristine || saving" (click)="submitForm()"
+              class="mr-2">Submit
+      </button>
+      <button type="button" nz-button [nzType]="'default'" [disabled]="form.pristine || saving" (click)="onCancel()">Cancel
+      </button>
+    </nz-form-control>
+  </nz-form-item>
+
+</form>

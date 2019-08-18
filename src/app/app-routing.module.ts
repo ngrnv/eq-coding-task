@@ -13,6 +13,10 @@ const routes: Routes = [
     path: 'shipments',
     loadChildren: () => import('./modules/shipments/shipments.module').then(mod => mod.ShipmentsModule)
   },
+  {
+    path: 'offices',
+    loadChildren: () => import('./modules/offices/offices.module').then(mod => mod.OfficesModule)
+  },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '404', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/404' },

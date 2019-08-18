@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-12">
+    <div class="d-flex align-items-baseline">
+      <eq-go-back [path]="['../']" [icon]="'home'" [label]="'Home'" class="pr-4"></eq-go-back>
+      <button nz-button nzType="primary" (click)="onAdd()">
+        <i nz-icon nzType="plus" class="align-middle pb-1"></i>Add Office
+      </button>
+    </div>
+    <eq-offices-list [data]="(route.data | async)?.offices"></eq-offices-list>
+  </div>
+</div>

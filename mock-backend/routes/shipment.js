@@ -61,8 +61,12 @@ router.post('/delete', function (req, res) {
 
 router.post('/get', function (req, res) {
   const id = req.body.id;
-  const shipment = getShipment(id);
-  setTimeout(() => res.send(shipment), RESPONSE_TIMEOUT);
+  new Promise((res, rej) => setTimeout(() => { res(true) }, RESPONSE_TIMEOUT))
+    .then(() => {
+      return getShipment(id);
+    })
+    .then(shipment => res.send(shipment))
+    .catch(err => res.status(err.status).send({error: err.message}))
 });
 
 router.post('/getByZIP', function (req, res) {

@@ -1,13 +1,16 @@
 <div class="row pt-5 pb-5">
   <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
     <nz-card class="w-100 p-3">
+      <eq-loader [show]="processing" [overlay]="true"></eq-loader>
       <h5>Search shipments</h5>
       <div class="mt-4">
-        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-          <input type="text" nz-input placeholder="Shipment ID"/>
+        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixShipmentButton">
+          <input type="text" nz-input placeholder="Shipment ID" id="shipment" name="shipment" [(ngModel)]="shipmentId"/>
         </nz-input-group>
-        <ng-template #suffixButton>
-          <button nz-button nzType="primary" nzSize="large" nzSearch>Search</button>
+        <ng-template #suffixShipmentButton>
+          <button nz-button nzType="primary" nzSize="large" nzSearch
+                  [disabled]="processing"
+                  (click)="subscriptionSearch()">Search</button>
         </ng-template>
       </div>
       <div class="mt-4">
@@ -15,14 +18,15 @@
       </div>
     </nz-card>
   </div>
+
   <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
     <nz-card class="w-100 p-3">
       <h5>Search Office</h5>
       <div class="mt-4">
-        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixOfficeButton">
           <input type="text" nz-input placeholder="ZIP Code"/>
         </nz-input-group>
-        <ng-template #suffixButton>
+        <ng-template #suffixOfficeButton>
           <button nz-button nzType="primary" nzSize="large" nzSearch>Search</button>
         </ng-template>
       </div>
@@ -31,4 +35,5 @@
       </div>
     </nz-card>
   </div>
+
 </div>

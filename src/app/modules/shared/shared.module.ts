@@ -10,7 +10,8 @@ import {
   NzInputModule,
   NzSpinModule,
   NzTableModule,
-  NzSelectModule
+  NzSelectModule,
+  NzMessageModule
 } from 'ng-zorro-antd';
 import { LoaderComponent } from './components/loader/loader.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -31,7 +32,8 @@ const MODULES = [
   NzTableModule,
   NzDropDownModule,
   NzFormModule,
-  NzSelectModule
+  NzSelectModule,
+  NzMessageModule
 ];
 
 const COMPONENTS = [

@@ -44,7 +44,7 @@ export class ShipmentFormComponent implements OnInit {
       });
     } else {
       this.form = this.fb.group({
-        id: [null, [Validators.required]],
+        id: [null],
         type: [null, [Validators.required]],
         origin: [null, [Validators.required]],
         destination: [null, [Validators.required]],
@@ -58,6 +58,7 @@ export class ShipmentFormComponent implements OnInit {
   submitForm() {
     validateAllFormFields(this.form);
     if (this.form.invalid) {
+      console.log('invalid form', this.form);
       return;
     }
     this.formResult.emit(this.form.getRawValue());

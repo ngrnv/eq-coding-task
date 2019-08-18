@@ -5,7 +5,7 @@ import { NzButtonModule, NzCardModule, NzDropDownModule, NzIconModule, NzInputMo
 import { LoaderComponent } from './components/loader/loader.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RouterModule } from '@angular/router';
-import { BackToHomeComponent } from './components/back-to-home/back-to-home.component';
+import { GoBackComponent } from './components/back-to-home/go-back.component';
 import { YesNoPipe } from './pipes/yes-no.pipe';
 
 const MODULES = [
@@ -25,7 +25,7 @@ const MODULES = [
 const COMPONENTS = [
   LoaderComponent,
   PageNotFoundComponent,
-  BackToHomeComponent
+  GoBackComponent
 ];
 
 const PIPES = [

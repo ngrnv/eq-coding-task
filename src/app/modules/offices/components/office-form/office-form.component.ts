@@ -40,7 +40,6 @@ export class OfficeFormComponent implements OnInit {
   submitForm() {
     validateAllFormFields(this.form);
     if (this.form.invalid) {
-      console.log('invalid form', this.form);
       return;
     }
     this.formResult.emit(this.form.getRawValue());

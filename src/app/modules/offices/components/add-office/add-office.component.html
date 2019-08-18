@@ -1,1 +1,19 @@
-<p>add-office works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="d-flex">
+      <eq-go-back class="pr-4" [label]="'All Offices'"></eq-go-back>
+      <eq-go-back [path]="['/home']" [icon]="'home'" [label]="'Home'"></eq-go-back>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-5 col-md-6 col-sm-12 mb-3">
+    <nz-card class="w-100 p-3">
+      <h5>Add Office</h5>
+      <eq-office-form class="mt-5" [saving]="saving"
+                        (formResult)="onFormResult($event)"
+                        (cancel)="onCancel()"></eq-office-form>
+    </nz-card>
+  </div>
+</div>

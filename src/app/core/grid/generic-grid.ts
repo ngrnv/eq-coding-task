@@ -26,8 +26,6 @@ export abstract class GenericGrid<T> {
       this.filterValueLists = this.buildFilterValueLists(this.config.enumerableColumns);
 
       this.displayedData = [...this.data];
-
-      console.log('filterValueLists', this.filterValueLists);
     }
   }
 
@@ -53,7 +51,6 @@ export abstract class GenericGrid<T> {
     } else {
       this.filter[columnName as string] = selectedValues;
     }
-    console.log('filter', this.filter);
     this.filterGrid();
   }
 

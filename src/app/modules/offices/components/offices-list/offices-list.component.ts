@@ -16,8 +16,7 @@ export class OfficesListComponent extends GenericGrid<Office> implements OnInit 
         enumerableColumns: [
           {
             name: 'PLZ',
-            // comparator: (filterValue: number, rowValue: number) =>
-            //   rowValue.toLocaleLowerCase().includes((filterValue || '').toLocaleLowerCase())
+            comparator: (filterValue: number, rowValue: number) => +rowValue === +filterValue
           }
         ]
       }
@@ -28,7 +27,7 @@ export class OfficesListComponent extends GenericGrid<Office> implements OnInit 
   }
 
   resetFilter() {
-    this.filter.id = null;
+    this.filter.PLZ = null;
     this.filterGrid();
   }
 

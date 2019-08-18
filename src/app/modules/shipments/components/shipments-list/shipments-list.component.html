@@ -19,22 +19,22 @@
     </th>
     <th nzShowFilter
         [nzFilters]="filterValueLists['type']"
-        (nzFilterChange)="filterGrid('type', $event)">
+        (nzFilterChange)="updateFilter('type', $event)">
       Type
     </th>
     <th nzShowFilter
         [nzFilters]="filterValueLists['weight']"
-        (nzFilterChange)="filterGrid('weight', $event)">
+        (nzFilterChange)="updateFilter('weight', $event)">
       Weight
     </th>
     <th nzShowFilter
         [nzFilters]="filterValueLists['office']"
-        (nzFilterChange)="filterGrid('office', $event)">
+        (nzFilterChange)="updateFilter('office', $event)">
       Office
     </th>
     <th nzShowFilter
         [nzFilters]="filterValueLists['delivered']"
-        (nzFilterChange)="filterGrid('delivered', $event)">
+        (nzFilterChange)="updateFilter('delivered', $event)">
       Delivered
     </th>
   </tr>
@@ -53,10 +53,10 @@
 
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <div class="search-box">
-    <input type="text" nz-input placeholder="Search Shipment" [(ngModel)]="searchValue"/>
-    <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+    <input type="text" nz-input placeholder="Search Shipment" [(ngModel)]="filter['id']"/>
+    <button nz-button nzSize="small" nzType="primary" (click)="filterGrid()" class="search-button">
       Search
     </button>
-    <button nz-button nzSize="small" (click)="reset()">Reset</button>
+    <button nz-button nzSize="small" (click)="resetNameFilter()">Reset</button>
   </div>
 </nz-dropdown-menu>

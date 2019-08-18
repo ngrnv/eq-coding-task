@@ -1,9 +1,10 @@
 import { Input } from '@angular/core';
-import { intersection, prop, uniqBy } from 'ramda';
+import { intersection, prop, uniqBy, find, propEq } from 'ramda';
 
 export abstract class GenericGrid<T> {
 
   config: GridConfig<T>;
+  getColumnConfig: (columnName: string) => EnumerableFilterColumnConfig<T>;
 
   public columns: string[] = [];
   public filterValueLists: FilterValueLists = {};
@@ -43,27 +44,47 @@ export abstract class GenericGrid<T> {
       this.filter[columnName] = null;
     });
     this.config = config;
+    this.getColumnConfig = getColumnConfig(this.config.enumerableColumns);
   }
 
-  public filterGrid(columnName: keyof T, selectedValues: any | any[]) {
-    console.log('filterGrid', selectedValues);
-    if (!selectedValues || selectedValues.length === 0) {
+  public updateFilter(columnName: keyof T, selectedValues: any | any[]): void {
+    if (!selectedValues || !selectedValues.length) {
       this.filter[columnName as string] = null;
     } else {
       this.filter[columnName as string] = selectedValues;
     }
+    console.log('filter', this.filter);
+    this.filterGrid();
+  }
+
+  public filterGrid(): void {
     this.displayedData = this.data.filter(row => {
       const filterResult: boolean[] = Object.keys(this.filter).map(filteredColumnName => {
-        if (!this.filter[filteredColumnName] || this.filter[filteredColumnName].length === 0) {
+        if (!this.filter[filteredColumnName] || !this.filter[filteredColumnName].length) {
           return true;
         }
-        const valueFn = this.config.enumerableColumns.find(column => column.name === filteredColumnName).valueFn;
-        const value = valueFn ? valueFn(row[filteredColumnName]) : row[filteredColumnName];
-        return this.filter[filteredColumnName].includes(value);
+        const valueFn = this.getColumnConfig(filteredColumnName).valueFn;
+        const rowColumnValue = valueFn ? valueFn(row[filteredColumnName]) : row[filteredColumnName];
+        return this.compareValues(rowColumnValue, this.filter[filteredColumnName], this.getColumnConfig(filteredColumnName).comparator);
       });
       return filterResult.every(res => !!res);
     });
-    console.log('filter', this.filter);
+  }
+
+  private compareValues(rowColumnValue: any, filterValue: any, comparator?: (filterValue: any, rowValue: any) => boolean): boolean {
+    if (Array.isArray(filterValue)) {
+      if (comparator) {
+        return !!filterValue.find(val => comparator(val, rowColumnValue));
+      } else {
+        return filterValue.includes(rowColumnValue);
+      }
+    } else {
+      if (comparator) {
+        return comparator(filterValue, rowColumnValue);
+      } else {
+        return filterValue === rowColumnValue;
+      }
+    }
   }
 
   private buildFilterValueLists(enumerableColumns: EnumerableFilterColumnConfig<T>[]): FilterValueLists {
@@ -87,6 +108,9 @@ export abstract class GenericGrid<T> {
 
 }
 
+const getColumnConfig =
+  (columnConfigs: EnumerableFilterColumnConfig<any>[]) => (columnName: string) => find(propEq('name', columnName))(columnConfigs);
+
 export interface GridConfig<T> {
   enumerableColumns: EnumerableFilterColumnConfig<T>[];
 }
@@ -96,6 +120,7 @@ export interface EnumerableFilterColumnConfig<T> {
   filterValues?: FilterValue[];
   valueFn?: (obj: any) => any;
   textFn?: (obj: any) => any;
+  comparator?: (filterValue: any, rowValue: any) => boolean;
 }
 
 export interface FilterValue {

@@ -16,6 +16,11 @@ export class ShipmentsListComponent extends GenericGrid<Shipment> implements OnI
       Shipment,
       {
         enumerableColumns: [
+          {
+            name: 'id',
+            comparator: (filterValue: string, rowValue: string) =>
+              rowValue.toLocaleLowerCase().includes((filterValue || '').toLocaleLowerCase())
+          },
           { name: 'weight', valueFn: prop('id'), textFn: prop('desc') },
           { name: 'type', valueFn: prop('id'), textFn: pipe(prop('name'), (name: string) => name.charAt(0).toUpperCase() + name.slice(1)) },
           { name: 'office', valueFn: prop('id'), textFn: pipe(props(['PLZ', 'name']), ([plz, name]) => `${plz}, ${name}`) },
@@ -26,6 +31,11 @@ export class ShipmentsListComponent extends GenericGrid<Shipment> implements OnI
   }
 
   ngOnInit() {
+  }
+
+  resetNameFilter() {
+    this.filter.id = null;
+    this.filterGrid();
   }
 
 }

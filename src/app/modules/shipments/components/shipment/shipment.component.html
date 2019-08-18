@@ -1,5 +1,24 @@
 <div class="row">
   <div class="col-12">
-    <eq-go-back></eq-go-back>
+    <div class="d-flex">
+      <eq-go-back class="pr-4" [label]="'All Shipments'"></eq-go-back>
+      <eq-go-back [path]="['/home']" [icon]="'home'" [label]="'Home'"></eq-go-back>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-5 col-md-6 col-sm-12 mb-3">
+    <nz-card class="w-100 p-3">
+      <h5>Shipment</h5>
+      <ng-container *ngIf="shipment$ | async; let shipment">
+        <div class="mt-4">
+          <div class="pb-2"><strong>ID:</strong> {{shipment.id}}</div>
+          <div class="pb-2"><strong>Weight:</strong> {{shipment.weight.desc}}</div>
+          <div class="pb-2"><strong>Office:</strong> {{shipment.office.PLZ}}, {{shipment.office.name}}</div>
+          <div><strong>Delivered:</strong> {{shipment.delivered | yesNo}}</div>
+        </div>
+      </ng-container>
+    </nz-card>
   </div>
 </div>

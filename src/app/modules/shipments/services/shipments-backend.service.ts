@@ -9,9 +9,16 @@ import { Shipment } from '../../../models/models';
 })
 export class ShipmentsBackendService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getAllShipments(): Observable<Shipment[]> {
     return this.http.get<Shipment[]>(`${environment.API_HOST}/shipment/list`);
+  }
+
+  getShipmentById(id: string): Observable<Shipment> {
+    // return this.http.request<Shipment>('GET', `${environment.API_HOST}/shipment/get`, { body: { id } });
+
+    return this.http.post<Shipment>(`${environment.API_HOST}/shipment/get`, { id });  // but why POST?
   }
 }

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ShipmentsListComponent } from './components/shipments-list/shipments-list.component';
 import { ShipmentsResolver } from './resolvers/shipments-resolver';
 import { ShipmentsComponent } from './components/shipments/shipments.component';
 import { ShipmentComponent } from './components/shipment/shipment.component';
+import { ShipmentResolver } from './resolvers/shipment-resolver';
 
 
 const routes: Routes = [
@@ -14,13 +14,15 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: ShipmentComponent
+    component: ShipmentComponent,
+    resolve: { shipment: ShipmentResolver }
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [ShipmentsResolver, ShipmentResolver]
 })
 export class ShipmentsRoutingModule {
 }

@@ -6,7 +6,7 @@ export abstract class GenericGrid<T> {
   config: GridConfig<T>;
 
   public columns: string[] = [];
-  public filterValueLists: { [key: string]: FilterValue[] } = {};
+  public filterValueLists: FilterValueLists = {};
   public filter: { [key: string]: any } = {};
   public sort: { [key: string]: any } = {};
 
@@ -21,16 +21,8 @@ export abstract class GenericGrid<T> {
         console.error('Incorrect enumerableColumns in config; [props, enumerableColumns]', this.columns, enumerableColumns);
         throw Error('Incorrect enumerableColumns in config');
       }
-      this.config.enumerableColumns.forEach(column => {
-        const textFn = column.textFn || column.valueFn;
-        let filterValues = this.data.map(row => ({
-            text: textFn ? textFn(row[column.name]) : row[column.name],
-            value: column.valueFn ? column.valueFn(row[column.name]) : row[column.name]
-          } as FilterValue)
-        );
-        filterValues = uniqBy(prop('value'), filterValues);
-        this.filterValueLists[column.name as string] = filterValues;
-      });
+
+      this.filterValueLists = this.buildFilterValueLists(this.config.enumerableColumns);
 
       this.displayedData = [...this.data];
 
@@ -74,13 +66,43 @@ export abstract class GenericGrid<T> {
     console.log('filter', this.filter);
   }
 
+  private buildFilterValueLists(enumerableColumns: EnumerableFilterColumnConfig<T>[]): FilterValueLists {
+    const result: FilterValueLists = {};
+    this.config.enumerableColumns.forEach(column => {
+      if (column.filterValues) {
+        result[column.name as string] = column.filterValues;
+        return;
+      }
+      const textFn = column.textFn || column.valueFn;
+      let filterValues = this.data.map(row => ({
+          text: textFn ? textFn(row[column.name]) : row[column.name],
+          value: column.valueFn ? column.valueFn(row[column.name]) : row[column.name]
+        } as FilterValue)
+      );
+      filterValues = uniqBy(prop('value'), filterValues);
+      result[column.name as string] = filterValues;
+    });
+    return result;
+  }
+
 }
 
 export interface GridConfig<T> {
-  enumerableColumns: { name: keyof T, valueFn?: (obj: any) => any, textFn?: (obj: any) => any }[];
+  enumerableColumns: EnumerableFilterColumnConfig<T>[];
+}
+
+export interface EnumerableFilterColumnConfig<T> {
+  name: keyof T;
+  filterValues?: FilterValue[];
+  valueFn?: (obj: any) => any;
+  textFn?: (obj: any) => any;
 }
 
 export interface FilterValue {
   text: string;
   value: any;
+}
+
+export interface FilterValueLists {
+  [key: string]: FilterValue[];
 }

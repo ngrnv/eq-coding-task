@@ -6,6 +6,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RouterModule } from '@angular/router';
 import { BackToHomeComponent } from './components/back-to-home/back-to-home.component';
+import { YesNoPipe } from './pipes/yes-no.pipe';
 
 const MODULES = [
   CommonModule,
@@ -21,20 +22,25 @@ const MODULES = [
   NzDropDownModule
 ];
 
-const DECLARATIONS = [
+const COMPONENTS = [
   LoaderComponent,
   PageNotFoundComponent,
   BackToHomeComponent
+];
+
+const PIPES = [
+  YesNoPipe
 ];
 
 @NgModule({
   imports: [
     ...MODULES
   ],
-  declarations: [...DECLARATIONS],
+  declarations: [...COMPONENTS, ...PIPES],
   exports: [
     ...MODULES,
-    ...DECLARATIONS
+    ...COMPONENTS,
+    ...PIPES
   ]
 })
 export class SharedModule {

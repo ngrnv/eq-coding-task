@@ -32,6 +32,11 @@
         (nzFilterChange)="filterGrid('office', $event)">
       Office
     </th>
+    <th nzShowFilter
+        [nzFilters]="filterValueLists['delivered']"
+        (nzFilterChange)="filterGrid('delivered', $event)">
+      Delivered
+    </th>
   </tr>
   </thead>
   <tbody>
@@ -40,6 +45,7 @@
     <td class="text-capitalize">{{shipment?.type?.name}}</td>
     <td>{{shipment?.weight?.desc}}</td>
     <td>{{shipment?.office?.PLZ + ', ' + shipment?.office?.name}}</td>
+    <td>{{shipment?.delivered | yesNo}}</td>
   </tr>
   </tbody>
 </nz-table>

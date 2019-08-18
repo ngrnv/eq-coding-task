@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'eq-shipments',
@@ -8,10 +8,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ShipmentsComponent implements OnInit {
 
-  constructor(public route: ActivatedRoute) {
+  constructor(public route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
   }
 
+  onAdd() {
+    this.router.navigate(['/shipments/add']);
+  }
 }

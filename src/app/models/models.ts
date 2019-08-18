@@ -36,4 +36,11 @@ export class Weight extends Entity {
 export class Office extends Entity {
   PLZ: number;
   name: string;
+
+  constructor() {
+    super();
+    this.PLZ = undefined;
+    this.name = undefined;
+  }
 }
+

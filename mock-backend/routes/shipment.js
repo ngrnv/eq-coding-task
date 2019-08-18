@@ -24,7 +24,7 @@ router.post('/add', function (req, res) {
     office,
   };
   addToList(newShipment);
-  res.send('Shipment added successfully');
+  setTimeout(() => res.send({ id: newShipment.id }), RESPONSE_TIMEOUT);
 });
 
 router.post('/update', function (req, res) {
@@ -89,7 +89,7 @@ function deleteShipment(shipment) {
 }
 
 function getType(selection) {
-  const type = db.types.filter(type => type.id === selection);
+  const type = db.types.find(type => type.id === selection);
   if (type.length === 0) {
     const err = new Error('Wrong type');
     err.status = 500;

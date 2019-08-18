@@ -21,4 +21,8 @@ export class ShipmentsBackendService {
 
     return this.http.post<Shipment>(`${environment.API_HOST}/shipment/get`, { id });  // but why POST?
   }
+
+  addShipment(shipment: Shipment): Observable<any> {
+    return this.http.post(`${environment.API_HOST}/shipment/add`, shipment);
+  }
 }

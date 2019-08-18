@@ -1,0 +1,113 @@
+<form nz-form [formGroup]="form" class="login-form" (ngSubmit)="submitForm()">
+
+
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please select shipment type">
+      <nz-input-group>
+        <nz-select
+          class="w-100"
+          formControlName="type"
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Select type">
+          <nz-option nzLabel="Letter" [nzValue]="0"></nz-option>
+          <nz-option nzLabel="Package" [nzValue]="1"></nz-option>
+        </nz-select>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please select origin">
+      <nz-input-group>
+        <nz-select
+          class="w-100"
+          formControlName="origin"
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Select origin">
+          <nz-option nzLabel="Yes" [nzValue]="true"></nz-option>
+          <nz-option nzLabel="No" [nzValue]="false"></nz-option>
+        </nz-select>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please select destination">
+      <nz-input-group>
+        <nz-select
+          class="w-100"
+          formControlName="destination"
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Select destination">
+          <nz-option nzLabel="Yes" [nzValue]="true"></nz-option>
+          <nz-option nzLabel="No" [nzValue]="false"></nz-option>
+        </nz-select>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please select delivered status">
+      <nz-input-group>
+        <nz-select
+          class="w-100"
+          formControlName="delivered"
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Select delivered">
+          <nz-option nzLabel="Yes" [nzValue]="true"></nz-option>
+          <nz-option nzLabel="No" [nzValue]="false"></nz-option>
+        </nz-select>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please select weight">
+      <nz-input-group>
+        <nz-select
+          class="w-100"
+          formControlName="weight"
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Select weight">
+          <nz-option nzLabel="Less than 1kg" [nzValue]="0"></nz-option>
+          <nz-option nzLabel="Between 1kg and 5kg" [nzValue]="1"></nz-option>
+          <nz-option nzLabel="More than 5kg" [nzValue]="2"></nz-option>
+        </nz-select>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please select office">
+      <nz-input-group>
+        <nz-select
+          class="w-100"
+          formControlName="office"
+          nzShowSearch
+          nzAllowClear
+          [nzLoading]="loadingOffices"
+          nzPlaceHolder="Select office">
+          <nz-option *ngFor="let office of offices$ | async"
+                     [nzLabel]="office.PLZ + ', ' + office.name" [nzValue]="office.id"></nz-option>
+        </nz-select>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+
+  <nz-form-item class="mb-0">
+    <nz-form-control>
+      <button nz-button [nzType]="'primary'" [disabled]="form.pristine || saving">Submit</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

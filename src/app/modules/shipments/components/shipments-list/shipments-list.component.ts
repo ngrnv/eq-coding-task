@@ -22,7 +22,11 @@ export class ShipmentsListComponent extends GenericGrid<Shipment> implements OnI
               rowValue.toLocaleLowerCase().includes((filterValue || '').toLocaleLowerCase())
           },
           { name: 'weight', valueFn: prop('id'), textFn: prop('desc') },
-          { name: 'type', valueFn: prop('id'), textFn: pipe(prop('name'), (name: string) => name.charAt(0).toUpperCase() + name.slice(1)) },
+          {
+            name: 'type',
+            valueFn: prop('id'),
+            textFn: pipe(prop('name'), (name: string) => name ? name.charAt(0).toUpperCase() + name.slice(1) : name)
+          },
           { name: 'office', valueFn: prop('id'), textFn: pipe(props(['PLZ', 'name']), ([plz, name]) => `${plz}, ${name}`) },
           { name: 'delivered', filterValues: [{ value: true, text: 'Yes' }, { value: false, text: 'No' }] }
         ]

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Shipment, ShipmentDto } from 'src/app/models/models';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { ShipmentsBackendService } from '../../../../core/services/backend/shipments-backend.service';
@@ -20,6 +20,7 @@ export class ShipmentComponent implements OnInit, OnDestroy {
   reloadShipment$ = new BehaviorSubject(null);
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private shipments: ShipmentsBackendService
   ) {
     this.shipment$ = combineLatest(
@@ -42,6 +43,14 @@ export class ShipmentComponent implements OnInit, OnDestroy {
 
   onEdit() {
     this.editMode = true;
+  }
+
+  onDelete(id: string) {
+    this.processing = true;
+    this.shipments.deleteShipment(id).pipe(tap(() => this.processing = false))
+      .subscribe(res => {
+        this.router.navigate(['/shipments']);
+      });
   }
 
   onResult(shipment: ShipmentDto) {

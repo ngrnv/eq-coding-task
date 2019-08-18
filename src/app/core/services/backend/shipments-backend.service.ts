@@ -30,4 +30,8 @@ export class ShipmentsBackendService {
     return this.http.post(`${environment.API_HOST}/shipment/update`, shipment); // why POST?
   }
 
+  deleteShipment(id: string) {
+    return this.http.post(`${environment.API_HOST}/shipment/delete`, { id }); // why POST?
+  }
+
 }

@@ -22,6 +22,7 @@
     "@types/ramda": "^0.26.19",
     "bootstrap": "^4.3.1",
     "ng-zorro-antd": "^8.1.2",
+    "ngx-take-until-destroy": "^5.4.0",
     "ramda": "^0.26.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

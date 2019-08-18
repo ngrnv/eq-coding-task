@@ -9,6 +9,7 @@ export class LoaderComponent implements OnInit {
 
   @Input() show = false;
   @Input() overlay = false;
+  @Input() global = false;
 
   constructor() {
   }

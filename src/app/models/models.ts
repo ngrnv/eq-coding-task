@@ -25,6 +25,15 @@ export class Shipment extends Entity {
   }
 }
 
+export class ShipmentDto extends Entity {
+  type: number;
+  origin: boolean;
+  destination: boolean;
+  delivered: boolean;
+  weight: number;
+  office: string;
+}
+
 export class ShipmentType extends Entity {
   name: string;
 }

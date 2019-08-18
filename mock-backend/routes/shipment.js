@@ -28,11 +28,28 @@ router.post('/add', function (req, res) {
 });
 
 router.post('/update', function (req, res) {
+  const request = req.body;
   const id = req.body.id;
-  const updatedShipment = req.body;
+
+  const type = getType(request.type);
+  const weight = getWeight(request.weight);
+  const office = getOffice(request.office);
+
+  const updated = {
+    id,
+    type,
+    origin: request.origin,
+    destination: request.destination,
+    delivered: request.delivered,
+    weight,
+    office,
+  };
+
+
+  // const updatedShipment = req.body;
   const shipment = getShipment(id);
-  const updatedId = updateStatus(shipment, updatedShipment);
-  res.send(updatedId + ' updated successfully');
+  const updatedId = updateStatus(shipment, updated);
+  res.send({ id: updatedId });
 });
 
 router.post('/delete', function (req, res) {

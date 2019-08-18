@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -9,6 +10,9 @@ const shipment = require('./routes/shipment');
 const office = require('./routes/office');
 
 const app = express();
+
+// cors
+app.use(cors());
 
 // uncomment after placing your favicon in /public
 app.use(logger('dev'));

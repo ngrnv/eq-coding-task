@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { Shipment } from '../../../models/models';
+import { Shipment, ShipmentDto } from '../../../models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,12 @@ export class ShipmentsBackendService {
     return this.http.post<Shipment>(`${environment.API_HOST}/shipment/get`, { id });  // but why POST?
   }
 
-  addShipment(shipment: Shipment): Observable<any> {
+  addShipment(shipment: ShipmentDto): Observable<any> {
     return this.http.post(`${environment.API_HOST}/shipment/add`, shipment);
   }
+
+  editShipment(shipment: ShipmentDto): Observable<any> {
+    return this.http.post(`${environment.API_HOST}/shipment/update`, shipment); // why POST?
+  }
+
 }

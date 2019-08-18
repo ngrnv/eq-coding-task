@@ -11,7 +11,9 @@
   <div class="col-lg-5 col-md-6 col-sm-12 mb-3">
     <nz-card class="w-100 p-3">
       <h5>Add Shipment</h5>
-      <eq-shipment-form class="mt-5" (formResult)="onFormResult($event)" (formSaving)="saving($event)"></eq-shipment-form>
+      <eq-shipment-form class="mt-5" [saving]="saving"
+                        (formResult)="onFormResult($event)"
+                        (cancel)="onCancel()"></eq-shipment-form>
     </nz-card>
   </div>
 </div>

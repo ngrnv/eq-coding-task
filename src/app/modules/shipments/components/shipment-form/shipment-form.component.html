@@ -107,7 +107,8 @@
 
   <nz-form-item class="mb-0">
     <nz-form-control>
-      <button nz-button [nzType]="'primary'" [disabled]="form.pristine || saving">Submit</button>
+      <button type="submit" nz-button [nzType]="'primary'" [disabled]="form.pristine || saving" class="mr-2">Submit</button>
+      <button type="button" nz-button [nzType]="'default'" [disabled]="form.pristine || saving" (click)="onCancel()">Cancel</button>
     </nz-form-control>
   </nz-form-item>
 </form>

@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Highlights
 
-* Uses ng-zorro library, new for me at this moments
+* Uses ng-zorro library, new for me at this moment
 * GenericGrid class for ng-zorro grids
 * Uses updated backend mock implementation in project's `./mock-backend` folder
 
